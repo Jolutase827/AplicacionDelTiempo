@@ -1,26 +1,29 @@
 package com.example.myweatherbase.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.myweatherbase.API.Connector;
 import com.example.myweatherbase.R;
+import com.example.myweatherbase.activities.model.PrevisionesReciclerView;
 import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.BaseActivity;
 import com.example.myweatherbase.base.CallInterface;
 
 public class MainActivity extends BaseActivity implements CallInterface {
 
-    private TextView txtView ;
     private Root root;
+    private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtView = findViewById(R.id.txtView);
+
 
         // Mostramos la barra de progreso y ejecutamos la llamada a la API
         showProgress();
@@ -38,6 +41,10 @@ public class MainActivity extends BaseActivity implements CallInterface {
     @Override
     public void doInUI() {
         hideProgress();
-        txtView.setText(root.getCity());
+        recyclerView = findViewById(R.id.recicleview);
+        PrevisionesReciclerView previsionesReciclerView = new PrevisionesReciclerView(this,root);
+        recyclerView.setAdapter(previsionesReciclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
     }
 }
