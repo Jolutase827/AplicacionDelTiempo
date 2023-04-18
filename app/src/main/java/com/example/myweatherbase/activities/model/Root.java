@@ -77,6 +77,10 @@ class City implements Serializable {
     public int timezone;
     public int sunrise;
     public int sunset;
+
+    public String getName() {
+        return name;
+    }
 }
 
 public class Root implements Serializable {

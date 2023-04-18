@@ -27,7 +27,7 @@
         app:srcCompat="@android:drawable/ic_menu_search" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/nombre_ciudad"
         android:layout_width="418dp"
         android:layout_height="56dp"
         android:background="#B1B1B1"

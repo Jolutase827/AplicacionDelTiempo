@@ -28,13 +28,14 @@ public class MainActivity extends BaseActivity implements CallInterface {
     private Root root;
     private RecyclerView recyclerView;
 
+    private TextView textView;
     private ImageButton imageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageButton = findViewById(R.id.buscar);
-
+        textView = findViewById(R.id.nombre_ciudad);
         // Mostramos la barra de progreso y ejecutamos la llamada a la API
         showProgress();
         executeCall(this);
@@ -67,6 +68,7 @@ public class MainActivity extends BaseActivity implements CallInterface {
         recyclerView.setAdapter(previsionesReciclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        textView.setText(root.getCity());
 
     }
 }
