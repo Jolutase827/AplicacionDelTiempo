@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.myweatherbase.R;
+
 public class AnyadirCiudad extends AppCompatActivity {
 
     @Override
