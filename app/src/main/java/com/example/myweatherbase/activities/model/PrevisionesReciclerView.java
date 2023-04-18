@@ -1,5 +1,6 @@
 package com.example.myweatherbase.activities.model;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
@@ -42,9 +43,10 @@ public class PrevisionesReciclerView extends RecyclerView.Adapter<PrevisionesRec
 
     @Override
     public void onBindViewHolder(@NonNull PrevisionesReciclerView.ViewHolder holder, int position) {
-        Date date = new Date((long)root.list.get(0).dt*1000);
+        Date date = new Date((long)root.list.get(position).dt*1000);
         //holder.imagen.setImageIcon(Connector.getConector().get(Icon.class,Parameters.ICON_URL_PRE+"10d"+Parameters.ICON_URL_POST));
-        holder.dia.setText((new SimpleDateFormat("E")).format(date));
+        cambiarColor(holder.itemView, position);
+        holder.dia.setText((new SimpleDateFormat("EEEE")).format(date));
         holder.estadoCielo.setText(root.getList().get(position).getWeather().get(0).getDescription());
         holder.hora.setText(root.getList().get(position).dt_txt.substring(11,16));
         holder.fecha.setText(root.getList().get(position).dt_txt.substring(0,11));
@@ -52,6 +54,13 @@ public class PrevisionesReciclerView extends RecyclerView.Adapter<PrevisionesRec
         holder.min.setText("MAX: "+((String.valueOf(root.getList().get(position).main.temp_min).length()>=3)?String.valueOf(root.getList().get(position).main.temp_min).substring(0,3):root.getList().get(position).main.temp_min)+"º");
         holder.temp.setText("Temp: "+root.getList().get(position).main.temp+"º");
         ImageDownloader.downloadImage(Parameters.ICON_URL_PRE+root.getList().get(position).getWeather().get(0).icon+Parameters.ICON_URL_POST,holder.imagen);
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private void cambiarColor(View view, int position) {
+        if (position %2==0){
+            view.setBackgroundColor(R.color.fondo);
+        }
     }
 
 
@@ -70,6 +79,8 @@ public class PrevisionesReciclerView extends RecyclerView.Adapter<PrevisionesRec
         private TextView min;
         private TextView max;
         private TextView temp;
+
+        private View item;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
