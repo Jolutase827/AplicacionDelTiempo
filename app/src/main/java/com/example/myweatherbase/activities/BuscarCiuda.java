@@ -11,12 +11,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myweatherbase.API.Connector;
 import com.example.myweatherbase.R;
+import com.example.myweatherbase.activities.model.AnyadirCiudad;
 import com.example.myweatherbase.activities.model.Ciudad;
 import com.example.myweatherbase.activities.model.CiudadRepository;
 import com.example.myweatherbase.activities.model.Root;
@@ -28,6 +30,7 @@ public class BuscarCiuda extends AppCompatActivity {
     private ImageView imageView;
 
     private Button buscar;
+    private ImageButton anyadirCiudad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class BuscarCiuda extends AppCompatActivity {
         ArrayAdapter<Ciudad> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, CiudadRepository.getInstance().getAll());
         spinner.setAdapter(adapter);
+        anyadirCiudad= findViewById(R.id.anyadirCiudad);
 
         ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -54,6 +58,27 @@ public class BuscarCiuda extends AppCompatActivity {
             Intent i = new Intent(this,MainActivity.class);
             i.putExtra("ciudad",((Ciudad)spinner.getSelectedItem()));
             someActivityResultLauncher.launch(i);
+        });
+
+
+        ActivityResultLauncher<Intent> nuevaciudad = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if(result.getResultCode() == RESULT_CANCELED)
+                        Toast.makeText(this, "Cancelado por el usuario", Toast.LENGTH_LONG).show();
+                    else if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        Ciudad ciudad = (Ciudad) data.getExtras().getSerializable("nuevaCiudad");
+                        CiudadRepository.getInstance().add(ciudad);
+                        adapter.notifyDataSetChanged();
+                        spinner.notify();
+                        Toast.makeText(this, "Nuevo: " + ciudad.getNombre() , Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        anyadirCiudad.setOnClickListener(v->{
+            Intent i = new Intent(this, AnyadirCiudad.class);
+            nuevaciudad.launch(i);
         });
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

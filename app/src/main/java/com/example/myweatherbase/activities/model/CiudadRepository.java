@@ -30,6 +30,9 @@ public class CiudadRepository {
     }
 
 
+    public void add(Ciudad ciudad){
+        ciudades.add(ciudad);
+    }
 
     public Ciudad getCiudadByName(String name){
         Optional<Ciudad> optionalCiudad= ciudades.stream()

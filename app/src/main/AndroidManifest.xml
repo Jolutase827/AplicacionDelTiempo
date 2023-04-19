@@ -14,7 +14,7 @@
         android:theme="@style/Theme.MyWeatherBase"
         tools:targetApi="31">
         <activity
-            android:name=".AnyadirCiudad"
+            android:name=".activities.model.AnyadirCiudad"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"
