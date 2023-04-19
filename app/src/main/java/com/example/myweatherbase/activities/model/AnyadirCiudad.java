@@ -1,5 +1,6 @@
 package com.example.myweatherbase.activities.model;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -21,6 +22,15 @@ public class AnyadirCiudad extends AppCompatActivity {
     private ImageButton atras;
 
     @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("lat",lat.getText().toString());
+        outState.putSerializable("lon",lon.getText().toString());
+        outState.putSerializable("url",url.getText().toString());
+        outState.putSerializable("name",cityName.getText().toString());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anyadir_ciudad);
@@ -30,6 +40,13 @@ public class AnyadirCiudad extends AppCompatActivity {
         url = findViewById(R.id.url);
         anyadir = findViewById(R.id.anyadir);
         atras = findViewById(R.id.atras);
+
+        if (savedInstanceState!=null){
+            lat.setText(savedInstanceState.getSerializable("lat").toString());
+            lon.setText(savedInstanceState.getSerializable("lon").toString());
+            url.setText(savedInstanceState.getSerializable("url").toString());
+            cityName.setText(savedInstanceState.getSerializable("name").toString());
+        }
 
         anyadir.setOnClickListener(view -> {
             Intent intent = new Intent();

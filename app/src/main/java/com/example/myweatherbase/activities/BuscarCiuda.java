@@ -2,6 +2,7 @@ package com.example.myweatherbase.activities;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -24,6 +25,10 @@ import com.example.myweatherbase.activities.model.CiudadRepository;
 import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.ImageDownloader;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class BuscarCiuda extends AppCompatActivity {
 
     private Spinner spinner;
@@ -32,6 +37,8 @@ public class BuscarCiuda extends AppCompatActivity {
     private Button buscar;
     private ImageButton anyadirCiudad;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +46,10 @@ public class BuscarCiuda extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         imageView = findViewById(R.id.imageView);
         buscar = findViewById(R.id.button);
-        ArrayAdapter<Ciudad> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, CiudadRepository.getInstance().getAll());
+
+        ArrayAdapter<Ciudad>   adapter = new ArrayAdapter<>(this,
+                    android.R.layout.simple_spinner_item, CiudadRepository.getInstance().getAll());
+
         spinner.setAdapter(adapter);
         anyadirCiudad= findViewById(R.id.anyadirCiudad);
 
@@ -70,8 +79,8 @@ public class BuscarCiuda extends AppCompatActivity {
                         Intent data = result.getData();
                         Ciudad ciudad = (Ciudad) data.getExtras().getSerializable("nuevaCiudad");
                         CiudadRepository.getInstance().add(ciudad);
+                        adapter.add(ciudad);
                         adapter.notifyDataSetChanged();
-                        spinner.notify();
                         Toast.makeText(this, "Nuevo: " + ciudad.getNombre() , Toast.LENGTH_LONG).show();
                     }
                 });

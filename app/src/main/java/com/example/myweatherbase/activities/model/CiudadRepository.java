@@ -2,11 +2,12 @@ package com.example.myweatherbase.activities.model;
 
 import com.example.myweatherbase.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CiudadRepository {
+public class CiudadRepository implements Serializable {
 
     private List<Ciudad> ciudades;
 
