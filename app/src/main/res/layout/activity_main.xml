@@ -9,12 +9,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recicleview"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="669dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/nombre_ciudad" />
 
     <ImageButton
         android:id="@+id/buscar"
@@ -22,13 +23,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:background="@android:drawable/presence_invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_search" />
 
     <TextView
         android:id="@+id/nombre_ciudad"
-        android:layout_width="418dp"
+        android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="#B1B1B1"
         android:gravity="center"
@@ -37,8 +39,6 @@
         android:textColor="#FAFAFA"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/recicleview"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

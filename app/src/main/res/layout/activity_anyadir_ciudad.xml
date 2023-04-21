@@ -72,7 +72,19 @@
         android:id="@+id/atras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_dialog" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/miubicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/lat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lon"
+        app:srcCompat="@android:drawable/ic_dialog_map" />
 </androidx.constraintlayout.widget.ConstraintLayout>

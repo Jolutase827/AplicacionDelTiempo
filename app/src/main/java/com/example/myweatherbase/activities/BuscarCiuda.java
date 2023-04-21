@@ -5,8 +5,12 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,14 +20,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.example.myweatherbase.API.Connector;
 import com.example.myweatherbase.R;
 import com.example.myweatherbase.activities.model.AnyadirCiudad;
 import com.example.myweatherbase.activities.model.Ciudad;
 import com.example.myweatherbase.activities.model.CiudadRepository;
 import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.ImageDownloader;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,8 +37,11 @@ public class BuscarCiuda extends AppCompatActivity {
     private Spinner spinner;
     private ImageView imageView;
 
-    private Button buscar;
-    private ImageButton anyadirCiudad;
+    private String proveedor;
+    private LocationManager managerloc;
+
+    private Button buscar, buscarUbicacion;
+    private FloatingActionButton anyadirCiudad;
 
 
 
@@ -46,6 +52,22 @@ public class BuscarCiuda extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         imageView = findViewById(R.id.imageView);
         buscar = findViewById(R.id.button);
+        buscarUbicacion = findViewById(R.id.buscarmiubicacion);
+
+
+
+
+        managerloc = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        Criteria criteria = new Criteria();
+        criteria.setCostAllowed(false);
+        criteria.setAltitudeRequired(true);
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+
+        proveedor = managerloc.getBestProvider(criteria,true);
+        @SuppressLint("MissingPermission")
+        Location location = managerloc.getLastKnownLocation(proveedor);
+
 
         ArrayAdapter<Ciudad>   adapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_spinner_item, CiudadRepository.getInstance().getAll());
@@ -62,6 +84,23 @@ public class BuscarCiuda extends AppCompatActivity {
 
                     }
                 });
+
+        ActivityResultLauncher<Intent> miubi = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if(result.getResultCode() == RESULT_CANCELED) {
+
+                    }else if (result.getResultCode() == Activity.RESULT_OK) {
+
+                    }
+                });
+
+
+        buscarUbicacion.setOnClickListener(view->{
+            Intent i = new Intent(this, MainActivity.class);
+            i.putExtra("ciudad", new Ciudad("","&lat="+location.getLatitude()+"&lon="+location.getLongitude(),"Mi ubicación"));
+            miubi.launch(i);
+        });
 
         buscar.setOnClickListener(view -> {
             Intent i = new Intent(this,MainActivity.class);

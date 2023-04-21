@@ -54,14 +54,10 @@ public class MainActivity extends BaseActivity implements CallInterface {
             showProgress();
             executeCall(this);
         }else {
-            root = (Root) (savedInstanceState.getSerializable("root"));
-            recyclerView = findViewById(R.id.recicleview);
-            PrevisionesReciclerView previsionesReciclerView = new PrevisionesReciclerView(this,root);
-            recyclerView.setAdapter(previsionesReciclerView);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-            recyclerView.setLayoutManager(linearLayoutManager);
-            textView.setText(root.getCity());
+            inicioWhether();
         }
+
+
 
 
 
@@ -81,13 +77,31 @@ public class MainActivity extends BaseActivity implements CallInterface {
     // Una vez ya se ha realizado la llamada, ocultamos la barra de progreso y presentamos los datos
     @Override
     public void doInUI() {
+        inicioWhether();
+
+    }
+
+
+
+
+    public void inicioWhether(){
         hideProgress();
         recyclerView = findViewById(R.id.recicleview);
-        PrevisionesReciclerView previsionesReciclerView = new PrevisionesReciclerView(this,root);
+        ActivityResultLauncher<Intent> masInfo = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if(result.getResultCode() == RESULT_CANCELED) {
+
+                    }else if (result.getResultCode() == Activity.RESULT_OK) {
+
+                    }
+                });
+        PrevisionesReciclerView previsionesReciclerView = new PrevisionesReciclerView(this,root, masInfo);
+
+
         recyclerView.setAdapter(previsionesReciclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         textView.setText(root.getCity());
-
     }
 }
