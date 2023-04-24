@@ -4,6 +4,126 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MasInformacion">
+    tools:context=".activities.model.MasInformacion">
 
+    <ImageView
+        android:id="@+id/icono"
+        android:layout_width="244dp"
+        android:layout_height="259dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:background="#CACACA"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="203dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/temperatura"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tempmax"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="#FF0000"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/humedad"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/senstermica"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tempmin"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="#0027FF"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/presion"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/diahora"
+        android:layout_width="221dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icono" />
+
+    <ImageButton
+        android:id="@+id/atras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#F6F6F6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <TextView
+        android:id="@+id/estadocielo"
+        android:layout_width="245dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="173dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="181dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/diahora" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -87,16 +87,9 @@ public class MainActivity extends BaseActivity implements CallInterface {
     public void inicioWhether(){
         hideProgress();
         recyclerView = findViewById(R.id.recicleview);
-        ActivityResultLauncher<Intent> masInfo = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if(result.getResultCode() == RESULT_CANCELED) {
 
-                    }else if (result.getResultCode() == Activity.RESULT_OK) {
+        PrevisionesReciclerView previsionesReciclerView = new PrevisionesReciclerView(this,root);
 
-                    }
-                });
-        PrevisionesReciclerView previsionesReciclerView = new PrevisionesReciclerView(this,root, masInfo);
 
 
         recyclerView.setAdapter(previsionesReciclerView);
