@@ -16,6 +16,9 @@
         android:theme="@style/Theme.MyWeatherBase"
         tools:targetApi="31">
         <activity
+            android:name=".activities.PreferenceActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.model.MasInformacion"
             android:exported="false" />
         <activity

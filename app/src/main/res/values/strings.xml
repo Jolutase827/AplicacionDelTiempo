@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MyWeatherBase</string>
+    <string name="standard">Estandar</string>
+    <string name="imperial">Imperial</string>
+    <string name="metric">Metrica</string>
+    <string name="esp">Español</string>
+    <string name="frc">Frances</string>
+    <string name="ale">Aleman</string>
 </resources>

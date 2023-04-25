@@ -90,4 +90,13 @@
         app:layout_constraintTop_toBottomOf="@+id/lon"
         app:layout_constraintVertical_bias="0.333"
         app:srcCompat="@android:drawable/ic_dialog_map" />
+
+    <ImageButton
+        android:id="@+id/setting"
+        android:layout_width="55dp"
+        android:layout_height="52dp"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_settings_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,6 +42,7 @@ public class BuscarCiuda extends AppCompatActivity {
 
     private Button buscar, buscarUbicacion;
     private FloatingActionButton anyadirCiudad;
+    private ImageButton settings;
 
 
 
@@ -53,7 +54,11 @@ public class BuscarCiuda extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         buscar = findViewById(R.id.button);
         buscarUbicacion = findViewById(R.id.buscarmiubicacion);
-
+        settings = findViewById(R.id.setting);
+        settings.setOnClickListener(view -> {
+            Intent i = new Intent(this, PreferenceActivity.class);
+            startActivity(i);
+        });
 
 
 

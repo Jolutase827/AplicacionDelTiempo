@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.myweatherbase.R;
+import com.example.myweatherbase.activities.PreferenceActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AnyadirCiudad extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class AnyadirCiudad extends AppCompatActivity {
     private String proveedor;
     private LocationManager managerloc;
     private EditText cityName;
+    private ImageButton settings;
     private EditText lat;
     private EditText lon;
     private EditText url;
@@ -52,7 +54,11 @@ public class AnyadirCiudad extends AppCompatActivity {
         url = findViewById(R.id.url);
         anyadir = findViewById(R.id.anyadir);
         atras = findViewById(R.id.atras);
-
+        settings = findViewById(R.id.setting);
+        settings.setOnClickListener(view -> {
+            Intent i = new Intent(this, PreferenceActivity.class);
+            startActivity(i);
+        });
         miUbicacion= findViewById(R.id.miubicacion);
 
 

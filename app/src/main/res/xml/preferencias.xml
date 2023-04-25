@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Idioma">
+
+    </PreferenceCategory>
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/idioma_entries"
+        android:entryValues="@array/idioma_values"
+        android:key="idiomas"
+        android:title="Idiomas" />
+    <PreferenceCategory android:title="Unidades de medida">
+
+    </PreferenceCategory>
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/unidades_entries"
+        android:entryValues="@array/unidades_values"
+        android:key="unidades"
+        android:title="Unidades" />
+</PreferenceScreen>

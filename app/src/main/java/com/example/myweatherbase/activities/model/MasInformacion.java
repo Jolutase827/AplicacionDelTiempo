@@ -3,12 +3,14 @@ package com.example.myweatherbase.activities.model;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myweatherbase.R;
+import com.example.myweatherbase.activities.PreferenceActivity;
 import com.example.myweatherbase.base.ImageDownloader;
 import com.example.myweatherbase.base.Parameters;
 
@@ -21,6 +23,7 @@ public class MasInformacion extends AppCompatActivity {
     private TextView max,min,tem,presion,sens,diahora,humedad,descip;
     private ImageButton atras;
     private ImageView icon;
+    private ImageButton settings;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,6 +40,11 @@ public class MasInformacion extends AppCompatActivity {
         humedad = findViewById(R.id.humedad);
         descip = findViewById(R.id.estadocielo);
         icon = findViewById(R.id.icono);
+        settings = findViewById(R.id.setting);
+        settings.setOnClickListener(view -> {
+            Intent i = new Intent(this, PreferenceActivity.class);
+            startActivity(i);
+        });
         Root root = (Root)getIntent().getExtras().getSerializable("root");
         int posicion = (int) getIntent().getExtras().getSerializable("posicion");
         Date date = new Date((long)root.list.get(posicion).dt*1000);

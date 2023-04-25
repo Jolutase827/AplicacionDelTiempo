@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="unidades_entries">
+        <item>@string/standard</item>
+        <item>@string/imperial</item>
+        <item>@string/metric</item>
+    </string-array>
+    <string-array name="unidades_values">
+        <item>standard</item>
+        <item>imperial</item>
+        <item>metric</item>
+    </string-array>
+    <string-array name="idioma_entries">
+        <item>@string/esp</item>
+        <item>@string/frc</item>
+        <item>@string/ale</item>
+    </string-array>
+    <string-array name="idioma_values">
+        <item>es</item>
+        <item>fr</item>
+        <item>de</item>
+    </string-array>
+
+</resources>

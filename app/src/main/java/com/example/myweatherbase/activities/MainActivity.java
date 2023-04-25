@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,10 +26,12 @@ import com.example.myweatherbase.activities.model.PrevisionesReciclerView;
 import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.BaseActivity;
 import com.example.myweatherbase.base.CallInterface;
+import com.example.myweatherbase.base.Parameters;
 
 public class MainActivity extends BaseActivity implements CallInterface {
 
     private Root root;
+    private ImageButton settings;
     private RecyclerView recyclerView;
 
     private TextView textView;
@@ -38,12 +43,19 @@ public class MainActivity extends BaseActivity implements CallInterface {
         outState.putSerializable("root",root);
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageButton = findViewById(R.id.buscar);
         textView = findViewById(R.id.nombre_ciudad);
+        settings = findViewById(R.id.setting);
+        settings.setOnClickListener(view -> {
+            Intent i = new Intent(this, PreferenceActivity.class);
+            startActivity(i);
+        });
+
         imageButton.setOnClickListener(view -> {
             Intent intent = new Intent();
             setResult(RESULT_OK,intent);
@@ -63,13 +75,15 @@ public class MainActivity extends BaseActivity implements CallInterface {
 
     }
 
+
+
     // Realizamos la llamada y recogemos los datos en un objeto Root
     @Override
     public void doInBackground() {
 
 
 
-        root = Connector.getConector().get(Root.class,((Ciudad)getIntent().getExtras().getSerializable("ciudad")).getCoordenada());
+        root = Connector.getConector().get(Root.class, "forecast?appid=" + Parameters.API + "&lang=" + MyPreferenceManager.getInstance(this).getStringIdioma() + "&units=" + MyPreferenceManager.getInstance(this).getStringUnits() +((Ciudad)getIntent().getExtras().getSerializable("ciudad")).getCoordenada());
 
 
     }
